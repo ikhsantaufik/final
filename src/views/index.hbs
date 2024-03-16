@@ -1,0 +1,213 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOME</title>
+
+    <!-- style css -->
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/nav.css" />
+
+    <!-- script font awesome -->
+    <script
+      src="https://kit.fontawesome.com/b9d0ad08e2.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <div class="left">
+        <ul>
+          <img src="../assets/image/logo.png" alt="logo" />
+          <li class="active">
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/add-blog">Add Project</a>
+          </li>
+          <li>
+            <a href="/testimonial">Testimonial</a>
+          </li>
+          <div class="log">
+            {{#if isLogin}}
+              <li class="nav-item">
+                <a class="nav-link fw-bold active text-danger">Hello,
+                  {{users}}</a>
+              </li>
+              <li class="nav-item ms-3">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+            {{else}}
+              <li class="nav-item">
+                <a class="nav-link" href="/register">Register</a>
+              </li>
+              <li class="nav-item ms-3">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+            {{/if}}
+          </div>
+        </ul>
+      </div>
+      <div class="d-flex justify-content-end">
+        <div class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+          <div class="hamberger">
+            <button onclick="openHamberger()">
+              <i class="fa-solid fa-bars fa-2xl"></i>
+            </button>
+          </div>
+        </div>
+        <div class="right">
+          <a class="btn btn-danger btn-submit ms-5" href="/contact-me">Contact
+            Me</a>
+        </div>
+      </div>
+    </nav>
+
+    {{#if messages.succes}}
+      <div class="alert alert-success" role="alert">
+        <div class="container">
+          {{messages.succes}}
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="hamberger-bars-items" id="hamberger-bars-items">
+      <a href="/" class="active">Home</a>
+      <a href="/add-blog">Add Project</a>
+      <a href="/testimonial">Testimonial</a>
+      {{#if isLogin}}
+        <a class="nav-item nav-link fw-bold active text-danger">Hello,
+          {{users}}</a>
+        <a class="nav-item ms-3 nav-link" href="/logout">Logout</a>
+      {{else}}
+        <a class="nav-item nav-link" href="/register">Register</a>
+        <a class="nav-item ms-3 nav-link" href="/login">Login</a>
+      {{/if}}
+      <a href="/contact">Contact</a>
+    </div>
+
+    <div class="card">
+      <div class="content">
+        <div class="content_card">
+          <h2>Hi Welcome to my Profil</h2>
+          <p class="content_msg">
+            Halo semua, saya Ikhsan Taufik, dan saya sangat senang dapat berbagi
+            sedikit tentang diri saya. Saya memiliki keahlian khusus dalam Web
+            Development dan telah sedang berlatih dalam pelatihan bootcamp
+            Dumbways. Sebagai seorang Pekerja, saya selalu berusaha untuk
+            meningkatkan diri saya dan mencari peluang baru untuk berkembang.
+            Saya percaya pada kolaborasi dan tim, dan saya senang bekerja dengan
+            orang-orang yang memiliki visi dan semangat yang sama. Terima kasih
+            telah mengambil waktu untuk membaca sedikit tentang saya. Saya
+            sangat bersemangat untuk dapat dinamis, seperti Dumbways ini.
+            berkontribusi dan belajar lebih lanjut di lingkungan yang positif
+            dan.
+          </p>
+
+          <div class="content_btn">
+            <button><a href="/contact.html">contact</a></button>
+            <p>
+              <a
+                href="https://drive.usercontent.google.com/download?id=1FsRxvpIAzpt3JxvGzcZX24bjuPtR3BOP&amp;export=download&amp;authuser=0&amp;confirm=t&amp;uuid=a812aa28-7c8e-4ca9-8cb7-bf0062aa0ac5&amp;at=APZUnTXlrYc5dSXKqEje5SmqarNI:1707725703411"
+                download
+              >download CV
+                <i class="fa-solid fa-download"></i>
+              </a>
+            </p>
+          </div>
+
+          <div class="content_socialmedia">
+            <a href="https://www.linkedin.com/in/ikhsan-psd-2a490922a/">
+              <img src="../assets/image/icons/linkedin.png" alt="linkedin" />
+            </a>
+            <a href="https://www.instagram.com/ikhsan_ta/">
+              <img src="../assets/image/icons/instagram.png" alt="instagram" />
+            </a>
+            <a href="https://id-id.facebook.com">
+              <img src="../assets/image/icons/facebook.png" alt="facebook" />
+            </a>
+            <a href="https://twitter.com/ikhsan78461">
+              <img src="../assets/image/icons/twitter.png" alt="twitter" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile">
+        <div class="profile_card">
+          <img src="../assets/image/person.jpg" alt="person" />
+          <h2>Ikhsan Taufik</h2>
+          <p>Fullstack Developer</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT LIST -->
+    <div class="container-project-list">
+      <div class="container-blog">
+        <h1>MY PROJECT</h1>
+        <div class="blog-card" id="blog-card">
+          {{#each data}}
+            <div class="card">
+              <a href="./blog-details.html?id=${index}">
+                <img
+                  src="uploads/{{this.image}}"
+                  class="img-fluid"
+                  alt="image-review"
+                />
+
+                <p class="card-title">
+                  <a
+                    href="/add-blog/{{this.id}}"
+                    target="_blank"
+                  >{{this.title}}</a></p>
+                <p class="card-duration">date :
+                  {{this.updatedAt}}
+                  |
+                  {{this.author}}</p>
+                <div class="card-content">
+                  <p>{{this.description}}</p>
+                </div>
+                <div class="card-icon">
+                  {{#if this.reactjs}}
+                    <i class="mt-5 me-2"><i class="fa-brands fa-react"></i></i>
+                  {{/if}}
+                  {{#if this.nodejs}}
+                    <i class="mt-5 me-2"><i
+                        class="fa-brands fa-node-js"
+                      ></i></i>
+                  {{/if}}
+                  {{#if this.java}}
+                    <i class="mt-5 me-2"><i class="fa-brands fa-java"></i></i>
+                  {{/if}}
+                  {{#if this.javascript}}
+                    <i class="mt-5 me-2"><i class="fa-brands fa-js"></i></i>
+                  {{/if}}</div>
+              </a>
+              <div class="card-btn">
+                {{#if this.isLogin}}
+                  <div class="d-flex justify-content-end">
+                    <a
+                      href="/edit-blog/{{this.id}}"
+                      class="btn btn-secondary text-decoration-none me-3 px-3 py-1"
+                      style="font-size: 14px;"
+                    >EDIT</a>
+                    <a
+                      href="/delete-blog/{{this.id}}"
+                      class="btn btn-danger text-decoration-none px-3 py-1"
+                      style="font-size: 14px;"
+                    >DELETE</a>
+                  </div>
+                {{/if}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../assets/js/blog.js"></script>
+  <script src="../assets/js/nav.js"></script>
+</html>
